@@ -16,4 +16,8 @@ private
     integer, parameter, public :: dp = real64
     integer, parameter, public :: qp = real128
 
+    real(sp), parameter, public :: pi_sp = acos(-1.0_sp)
+    real(dp), parameter, public :: pi_dp = acos(-1.0_dp)
+    real(qp), parameter, public :: pi_qp = acos(-1.0_qp)
+
 end module constants_m

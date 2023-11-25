@@ -2,6 +2,7 @@
 set(MODULE_FILES 
     constants_m.f90
     math_m.f90
+    random_m.f90
    )
 
 # compile source files to lib_modules

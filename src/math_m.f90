@@ -3,12 +3,12 @@ use, non_intrinsic :: constants_m, only: sp, dp
 implicit none
 private
 
-    public :: sum, avg, var, std
+    public :: vsum, vavg, vvar, vstd
 
     contains
 
 
-        pure function sum(x) result(sum_x)
+        pure function vsum(x) result(sum_x)
             real(sp), intent(in) :: x(:)
             real(sp) :: sum_x
             real(dp) :: work
@@ -23,40 +23,40 @@ private
             else
                 sum_x = 0.0_sp
             end if
-        end function sum
+        end function vsum
 
 
-        pure function avg(x) result(avg_x)
+        pure function vavg(x) result(avg_x)
             real(sp), intent(in) :: x(:)
             real(sp) :: avg_x
             integer :: n
             n = size(x)
             if (n > 0) then
-                avg_x = sum(x)/real(n, kind=sp)
+                avg_x = vsum(x)/real(n, kind=sp)
             else
                 avg_x = 0.0_sp
             end if
-        end function avg
+        end function vavg
 
 
-        pure function var(x) result(var_x)
+        pure function vvar(x) result(var_x)
             real(sp), intent(in) :: x(:)
             real(sp) :: var_x
             integer :: n
             n = size(x)
             if (n > 1) then
-                var_x = sum((x - avg(x))**2)/real(n - 1, kind=sp)
+                var_x = vsum((x - vavg(x))**2)/real(n - 1, kind=sp)
             else
                 var_x = 0.0_sp
             end if
-        end function var
+        end function vvar
 
 
-        pure function std(x) result(std_x)
+        pure function vstd(x) result(std_x)
             real(sp), intent(in) :: x(:)
             real(sp) :: std_x
-            std_x = sqrt(var(x))
-        end function std
+            std_x = sqrt(vvar(x))
+        end function vstd
 
 
 end module math_m
